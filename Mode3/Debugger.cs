@@ -2,20 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Debugger : MonoBehaviour
+public static class Debugger
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   
 
-    public void SaveAction(string action)
+    public static void SaveAction(string action)
     {
         PlayerPrefs.SetString("LastActions", PlayerPrefs.GetString("LastActions") + '\n' + action);
     }
 
-    public string ShowActions()
+    public static string ShowActions()
     {
         string txt = string.Empty;
         txt = PlayerPrefs.GetString("LastActions");

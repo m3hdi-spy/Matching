@@ -17,7 +17,8 @@ public class ButtonsPlace : MonoBehaviour
         get { return instance; }
     }
 
-
+    public GameObject gmdeb;
+    public Text txt;
     public GUIStyle gStyle;
 
     private void Awake()
@@ -49,6 +50,8 @@ public class ButtonsPlace : MonoBehaviour
         btn.GetComponent<FloatingButton>().isLast = true;
         if (transform.childCount > 1)
             transform.GetChild(transform.childCount - 2).GetComponent<FloatingButton>().isLast = false;
+
+        Debugger.SaveAction("Instant new Button");
 
         Timer.Instance.StartTimer();
     }
@@ -83,6 +86,7 @@ public class ButtonsPlace : MonoBehaviour
         if (transform.childCount > 1)
             transform.GetChild(transform.childCount - 2).GetComponent<FloatingButton>().isLast = false;
 
+        Debugger.SaveAction("Button: " + obj.GetComponent<FloatingButton>().CurrectPlaceID + "Move to Top.");
         obj.localPosition = SetPosition();
     }
     void ScrollDown()
@@ -133,23 +137,6 @@ public class ButtonsPlace : MonoBehaviour
         staytri = str;
     }
 
-    public GameObject LogWindows;
-    public Text logtxt;
-    public void ClickOnLogWindows()
-    {
-        logtxt = LogWindows.transform.GetChild(0).GetComponent<Text>();
-        if (LogWindows.activeInHierarchy)
-        {
-            LogWindows.SetActive(false);
-            logtxt.text = string.Empty;
-            FloatingButton.log1 = string.Empty;
-        }
-        else
-        {
-            LogWindows.SetActive(true);
-            logtxt.text = FloatingButton.log1;
-        }
-    }
 
     private void OnGUI()
     {
@@ -160,5 +147,11 @@ public class ButtonsPlace : MonoBehaviour
         GUI.Label(new Rect(new Vector2(10, 170), new Vector2(220, 35)), "Back to Original: " + originalpos, gStyle);
 
         GUI.Label(new Rect(new Vector2(10, 200), new Vector2(220, 35)), "Stay Trigger: " + staytri, gStyle);
+    }
+
+    public void ded()
+    {
+        gmdeb.SetActive(!gmdeb.activeInHierarchy);
+        txt.text = Debugger.ShowActions();
     }
 }

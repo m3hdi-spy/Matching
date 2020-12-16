@@ -23,7 +23,7 @@ public class FloatingButton : MonoBehaviour
     byte PlaceID;
 
 
-    public static string log1;
+    public List<string> logs = new List<string>();
 
 
     private bool DebugStayTrigger;
@@ -34,7 +34,7 @@ public class FloatingButton : MonoBehaviour
         transform.GetChild(0).gameObject.GetComponent<Text>().text = id.ToString();
         RealtimeYpos = transform.localPosition.y;
         OriginalPos = this.transform.localPosition;
-        log1 += "First Original: " + OriginalPos;
+        logs.Add("FirstPos: " + OriginalPos);
     }
 
     
@@ -56,7 +56,7 @@ public class FloatingButton : MonoBehaviour
         if(backToOriginals)
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, OriginalPos, 120);
-            log1 += "\n Go To Original? " + OriginalPos;
+            
             if (transform.localPosition.y >= OriginalPos.y - 0.1f && transform.localPosition.y <= OriginalPos.y + 0.1f)// || (transform.localPosition.y <= OriginalPos.y - 0.1f && transform.localPosition.y >= OriginalPos.y - 0.05f))
                 IsInOriginalPosition();
         }
@@ -66,25 +66,24 @@ public class FloatingButton : MonoBehaviour
    
     public void PointerDrag()
     {
-
+        logs.Add("draging");
         isDragging = true;
         backToOriginals = false;
-        log1 += "\n Dragging";
     }
     public void PointerDown()
     {
+        logs.Add("PDown");
         isPointerDown = true;
         isPointerUp = false;
         g_UIManager.Instance.ResetDropsColor();
-        log1 += "\n PointerDown";
     }
     public void PointerUp()
     {
+        logs.Add("PuP");
         isPointerUp = true;
         isPointerDown = false;
         isDragging = false;
         Check();
-        log1 += "\n PointerUp";
     }
 
     public void OnPlace(byte id)
@@ -101,13 +100,16 @@ public class FloatingButton : MonoBehaviour
 
     public void GobacktoOriginalPosition()
     {
+        logs.Add("Start Back to Originals");
+        logs.Add("Current Pos: " + transform.localPosition);
+        logs.Add("Original: " + OriginalPos);
         backToOriginals = true;
-        log1 += "\n Go Back To original: True";
     }
     private void IsInOriginalPosition()
     {
+        logs.Add("Original End!");
+        logs.Add("Current Position after: " + transform.localPosition);
         backToOriginals = false;
-        log1 += "\n Go Back To Original: False";
     }
 
 
