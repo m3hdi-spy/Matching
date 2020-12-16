@@ -124,7 +124,10 @@ public class FloatingButton : MonoBehaviour
             GobacktoOriginalPosition();
         }
     }
-
+    public void SetOrigialPosition(Vector3 newPos)
+    {
+        OriginalPos = newPos;
+    }
     public void SaveOriginalPosition(float Y)
     {
         OriginalPos.y -= Y;

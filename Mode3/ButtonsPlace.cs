@@ -88,6 +88,7 @@ public class ButtonsPlace : MonoBehaviour
 
         Debugger.SaveAction("Button: " + obj.GetComponent<FloatingButton>().CurrectPlaceID + "Move to Top.");
         obj.localPosition = SetPosition();
+        obj.GetComponent<FloatingButton>().SetOrigialPosition(obj.localPosition);
     }
     void ScrollDown()
     {
