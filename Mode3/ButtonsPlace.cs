@@ -17,9 +17,6 @@ public class ButtonsPlace : MonoBehaviour
         get { return instance; }
     }
 
-    public GameObject gmdeb;
-    public Text txt;
-    public GUIStyle gStyle;
 
     private void Awake()
     {
@@ -126,33 +123,4 @@ public class ButtonsPlace : MonoBehaviour
         Scrolling = false;
     }
 
-
-    bool pdown, pup, drag, originalpos, staytri;
-
-    public void GUISetup(bool pd, bool pu, bool dr, bool org, bool str)
-    {
-        pdown = pd;
-        pup = pu;
-        drag = dr;
-        originalpos = org;
-        staytri = str;
-    }
-
-
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(new Vector2(10, 80), new Vector2(220, 35)), "On Pointer Down: " + pdown, gStyle);
-        GUI.Label(new Rect(new Vector2(10, 110), new Vector2(220, 35)), "On Pointer Up: " + pup, gStyle);
-        GUI.Label(new Rect(new Vector2(10, 140), new Vector2(220, 35)), "On Pointer Dragging: " + drag, gStyle);
-
-        GUI.Label(new Rect(new Vector2(10, 170), new Vector2(220, 35)), "Back to Original: " + originalpos, gStyle);
-
-        GUI.Label(new Rect(new Vector2(10, 200), new Vector2(220, 35)), "Stay Trigger: " + staytri, gStyle);
-    }
-
-    public void ded()
-    {
-        gmdeb.SetActive(!gmdeb.activeInHierarchy);
-        txt.text = Debugger.ShowActions();
-    }
 }

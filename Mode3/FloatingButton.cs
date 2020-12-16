@@ -141,12 +141,10 @@ public class FloatingButton : MonoBehaviour
             if(isLast && !isDragging)
             gameObject.GetComponentInParent<ButtonsPlace>().InstantButton();
         }
-        gameObject.GetComponentInParent<ButtonsPlace>().GUISetup(isPointerDown, isPointerUp, isDragging, backToOriginals, DebugStayTrigger);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         DebugStayTrigger = false;
-        gameObject.GetComponentInParent<ButtonsPlace>().GUISetup(isPointerDown, isPointerUp, isDragging, backToOriginals, DebugStayTrigger);
     }
 
     
