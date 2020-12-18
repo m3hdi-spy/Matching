@@ -353,6 +353,7 @@ public class g_UIManager : MonoBehaviour
         HintCount--;
         txtHintCounter.text = HintCount.ToString();
        StartCoroutine(pnlGameModes[1].GetComponentInChildren<GenerateCards>().Hint());
+        pnlGameModes[1].GetComponentInChildren<CheckAnswer5>().ResetValues();
         StartCoroutine(HintCoolDown());
     }
 
