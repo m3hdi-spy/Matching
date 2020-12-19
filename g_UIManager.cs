@@ -112,7 +112,8 @@ public class g_UIManager : MonoBehaviour
         ResetHeals();
         ResetTimer();
         pnlGameModes[panelIndex].SetActive(true);
-        switch(GameManager.Instance.GameMode)
+        LevelManager.Instance.isGamePause = false;
+        switch (GameManager.Instance.GameMode)
         {
             case 3:
                 {
@@ -382,6 +383,7 @@ public class g_UIManager : MonoBehaviour
             if(pnlGameModes[1].activeInHierarchy)
             {
                 pnlGameModes[1].transform.GetChild(1).GetComponent<GenerateCards>().ResetCards();
+                pnlGameModes[1].GetComponentInChildren<CheckAnswer5>().ResetValues();
                 pnlGameModes[1].SetActive(false);
             }
         }

@@ -70,7 +70,6 @@ public class CheckAnswer5 : MonoBehaviour
 
     IEnumerator CardsAnimation(bool isCor)
     {
-        
         yield return new WaitForSeconds(1);
         if (LevelManager.Instance.isGamePause) { ResetValues(); yield break; }
         if (isCor)
