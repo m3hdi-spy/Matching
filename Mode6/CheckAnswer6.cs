@@ -38,9 +38,10 @@ public class CheckAnswer6 : MonoBehaviour
     }
     private void WrongAnswer(GameObject fObject)
     {
-        fObject.GetComponent<DragandDrop>().BackToOriginalPosition();
+        fObject.GetComponent<DragandDrop>().BackToOriginalPosition(true);
         g_UIManager.Instance.Mistakes++;
         Handheld.Vibrate();
+
         if (GameManager.Instance.IsMainGame)
             g_UIManager.Instance.DecreaseHeal();
     }

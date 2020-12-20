@@ -75,12 +75,15 @@ public class DragandDrop : MonoBehaviour
         StartCoroutine(ResetPointerUp());
 
         if (!isInTrigger)
-            BackToOriginalPosition();
+            BackToOriginalPosition(false);
     }
     public void OnPointerDrag()
     {
         if (!Touchable)
             return;
+
+        if (gameObject.GetComponent<UnityEngine.UI.Image>().color == Color.red)
+            gameObject.GetComponent<UnityEngine.UI.Image>().color = Color.white;
 
         isPointerDown = false;
         isPointerUp = false;
@@ -92,17 +95,19 @@ public class DragandDrop : MonoBehaviour
         yield return new WaitForEndOfFrame();
         isPointerUp = false;
     }
-    public void BackToOriginalPosition()
+    public void BackToOriginalPosition(bool inWrongAnswer)
     {
         goToOriginal = true;
         originPos = gameObject.GetComponent<Mode6Buttons>().OriginalPosition;
-
+        if (inWrongAnswer)
+            gameObject.GetComponent<UnityEngine.UI.Image>().color = Color.red;
     }
 
     private void EndGotoOriginalPosition()
     {
         goToOriginal = false;
         transform.localPosition = originPos;
+        gameObject.GetComponent<UnityEngine.UI.Image>().color = Color.white;
     }
 
 

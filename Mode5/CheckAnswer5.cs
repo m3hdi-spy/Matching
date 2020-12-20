@@ -102,7 +102,6 @@ public class CheckAnswer5 : MonoBehaviour
 
     public void BadTouch()
     {
-        Debug.Log("BadTouch");
         foreach (Transform ch in transform)
         {
             if (ch.name == "LowerPlace") continue;
